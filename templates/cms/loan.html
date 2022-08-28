@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loans</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid">
+    <a class="fs-1 text-success bg-dark" href="http://127.0.0.1:8000/customer/">CMS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <strong><a class="nav-link text-success" href="http://127.0.0.1:8000/loan/">Loans</a></strong>
+        <a class="nav-link text-success" href="http://127.0.0.1:8000/transaction/">Transaction</a>
+        <a class="nav-link text-success" href="http://127.0.0.1:8000/account/">Account</a>
+      </div>
+    </div>
+  </div>
+</nav>
+    <table border="5" class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>Account Name</th>
+                <th>Loan Amount</th>
+                <th>Amount Paid</th>
+                <th>Loan Begun on</th>
+                <th>Loan Duration</th>
+            </tr>
+        </thead>
+    <tbody class="loans">
+        {% for loan in loans %}
+            <tr>
+                <td class="loan">{{ loan.account_number }}</td>
+                <td class="loan">{{ loan.loan_amount }}</td>
+                <td class="loan">{{ loan.loan_amount_paid }}</td>
+                <td class="loan">{{ loan.loan_start_date }}</td>
+                <td class="loan">{{ loan.loan_duration }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

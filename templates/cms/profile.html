@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User's profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid">
+    <a class="fs-1 text-success bg-dark" href="http://127.0.0.1:8000/customer/">CMS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <strong><a class="nav-link text-success" href="http://127.0.0.1:8000/loan/">Loans</a></strong>
+        <a class="nav-link text-success" href="http://127.0.0.1:8000/transaction/">Transaction</a>
+        <a class="nav-link text-success" href="http://127.0.0.1:8000/account/">Account</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<br>
+<br>
+
+    <div class="container">
+    <div class="main-body text-success">
+
+
+
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <h4>{{ customer.account_holder_name }}</h4>
+                      <p class="text-secondary mb-1">{{ customer.customer_occupation }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Full Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ customer.account_holder_name }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Account Number</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{ customer.account_number }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Customer NIDA</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ customer.customer_nida }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Account Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{ customer.account_name}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Customer Role</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{ customer.customer_role}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <a href="##########" class="btn btn-outline-success " target="_blank">Edit</a>
+                      <a href="##########" class="btn btn-outline-success" target="_blank">Delete</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+            <table border="5" class="table table-hover">
+             <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Account Number</th>
+                <th scope="col">Customer DateofBirth</th>
+                <th scope="col">Current NIDA</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for custransact in transactions %}
+                <tr>
+                    <td>{{ custransact.tranaction_number }}</td>
+                    <td>{{ custransact.transaction_amount }}</td>
+                    <td>{{ custransact.transaction_type }}</td>
+                </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+        </div>
+    </div>
+</body>
+</html>
