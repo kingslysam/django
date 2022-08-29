@@ -15,13 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from CMS.views import customer, loan, transaction, CustomerAdd, CustomerDetails
+from CMS.views import customer, loan, transaction, CustomerAdd, CustomerDetails, EditTemplate, CustomerFormDjango, CMISHomeView
 
 urlpatterns = [
+    path('', CMISHomeView.as_view(), name='home'),
     path('admin/', admin.site.urls),
-    path('customer/', customer),
+    path('customer/', customer, name='customer'),
     path('loan/', loan),
     path('transaction/', transaction),
     path('add/', CustomerAdd.as_view(), name='customer-add'),
-    path('customer/profile<int:pk>', CustomerDetails.as_view(), name='customer-profile')
+    path('customer/profile<int:pk>', CustomerDetails.as_view(), name='customer-profile'),
+    path('edit/', CustomerFormDjango.as_view(), name='edit')
 ]

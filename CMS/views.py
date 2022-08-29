@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+
+from .form import CustomerCreateForm
 from .models import Customer, Loan, Transaction
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, TemplateView, FormView
 
 
 # Create your views here.
+class CMISHomeView(TemplateView):
+    template_name = 'base.html'
+
 
 def customer(request):
     cus = Customer.objects.all().order_by('account_number')
@@ -33,6 +38,9 @@ def transaction(request):
     return render(request, 'cms/transaction.html', {'transact': transact})
 
 
+class EditTemplate(TemplateView):
+    template_name = 'cms/edit.html'
+
 class CustomerAdd(CreateView):
     model = Customer
     template_name = 'cms/add_customer.html'
@@ -45,3 +53,10 @@ class CustomerAdd(CreateView):
 class CustomerDetails(DetailView):
     model = Customer
     template_name = 'cms/profile.html'
+
+
+class CustomerFormDjango(FormView):
+    template_name = 'cms/djangoform.html'
+    form_class = CustomerCreateForm
+    success_url = '/customer'
+
