@@ -1,99 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Customer's</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Customers</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <div class="container-fluid">
-    <a class="fs-1 text-success bg-dark" href="http://127.0.0.1:8000/customer/">CMS</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link text-success" href="http://127.0.0.1:8000/loan/">Loans</a>
-        <a class="nav-link text-success" href="http://127.0.0.1:8000/transaction/">Transaction</a>
-        <a class="nav-link text-success" href="http://127.0.0.1:8000/account/">Account</a>
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            Customers this week
+          </button>
+        </div>
       </div>
-    </div>
-  </div>
-</nav>
-<br>
 
-<div class="container-fluid d-flex justify-content-lg-end padding">
+      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
 
-<div class="col-md-6 col-lg-4">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Number of <strong>Accounts</strong></h5>
-                    <a href="#" data-abc="true"><i class="fa fa-ellipsis-v"></i></a>
-              </div>
-
-              <div class="card-body card-body">
-                <div class="text-center py-20">
-                  <div data-provide="peity" data-type="donut" data-size="150" data-inner-radius="55" data-fill="#198754,#0d6efd,#ffc107" style="display: none;">953,613,169</div><svg class="peity" height="150" width="150"><path d="M 75 0 A 75 75 0 1 1 52.146854305878314 146.43342167279437 L 58.24102649097743 127.38450922671586 A 55 55 0 1 0 75 20" fill="#198754"></path><path d="M 52.146854305878314 146.43342167279437 A 75 75 0 0 1 31.9107235882174 13.613403268229668 L 43.40119729802609 29.983162396701758 A 55 55 0 0 0 58.24102649097743 127.38450922671586" fill="#0d6efd"></path><path d="M 31.9107235882174 13.613403268229668 A 75 75 0 0 1 74.99999999999999 0 L 74.99999999999999 20 A 55 55 0 0 0 43.40119729802609 29.983162396701758" fill="#ffc107"></path></svg>
-                </div>
-
-                <ul class="list-inline">
-                  <li class="flexbox mb-1">
-                    <div>
-                      <span class="badge badge-dot badge-lg mr-1" style="background-color: #198754"></span>
-                      <center><span class="text-success">PHP Developer (22)</span></center>
-                    </div>
-                  </li>
-
-                  <li class="flexbox mb-1">
-                    <div>
-                      <span class="badge badge-dot badge-lg mr-1" style="background-color: #0d6efd"></span>
-                      <center><span class="text-primary">JAVA Developer (14)</span></center>
-                    </div>
-                  </li>
-
-                  <li class="flexbox">
-                    <div>
-                      <span class="badge badge-dot badge-lg mr-1" style="background-color: #ffc107"></span>
-                      <center><span class="text-warning">PHP Architect (4)</span></center>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          </div>
-
-<br>
-<div class="container px-4">
-    <table border="1" class="table table-hover">
-        <thead>
+      <h2>Customers</h2><a href="http://127.0.0.1:8000/add/" target="_blank" class="btn btn-outline-success">
+                        Add Customer
+                    </a>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
             <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Account Number</th>
-                <th scope="col">Customer Date of Birth</th>
-                <th scope="col">Current NIDA</th>
-                <th scope="col">Customer Role</th>
-                <th scope="col"></th>
+              <th scope="col">Customer Name</th>
+              <th scope="col">Customer's Account</th>
+              <th scope="col">Account Number</th>
+              <th scope="col"></th>
             </tr>
-        </thead>
-    <tbody class="cus">
-        {% for customer in cus %}
+          </thead>
+          <tbody class="cus">
+          {% for customer in cus%}
             <tr>
-                <td class="customer">{{ customer.account_holder_name }}</td>
-                <td class="customer">{{ customer.account_number }}</td>
-                <td class="customer">{{ customer.customer_birth_date }}</td>
-                <td class="customer">{{ customer.customer_nida }}</td>
-                <td class="customer">{{ customer.customer_role }}</td>
-                <td><a href="{% url 'customer-profile' customer.pk %}" target="_blank" class="btn btn-outline-success">
-                        View
+              <td class="customer">{{ customer.account_holder_name }}</td>
+              <td>{{ customer.account_name }}</td>
+              <td>{{ customer.account_number }}</td>
+              <td><a href="{% url 'customer-profile' customer.pk %}" target="_blank" class="btn btn-outline-success">
+                        More Details
                     </a>
                 </td>
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
- </div>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+{% endblock %}
 </body>
 </html>

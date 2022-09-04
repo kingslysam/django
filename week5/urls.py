@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from CMS.views import customer, loan, transaction, CustomerAdd, CustomerDetails, EditTemplate, CustomerFormDjango, CMISHomeView
 
 urlpatterns = [
@@ -25,5 +25,7 @@ urlpatterns = [
     path('transaction/', transaction),
     path('add/', CustomerAdd.as_view(), name='customer-add'),
     path('customer/profile<int:pk>', CustomerDetails.as_view(), name='customer-profile'),
-    path('edit/', CustomerFormDjango.as_view(), name='edit')
+    path('edit/', CustomerFormDjango.as_view(), name='edit'),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/v1/', include('api.urls'))
 ]

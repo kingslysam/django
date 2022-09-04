@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,33 +9,34 @@
 </head>
 <body>
     <center><h1 class="text-success bg-dark">Enter the customers details</h1></center>
+    {% block content %}
     <div class="container text-success">
         <div class="row justify-content-md-center">
             <form class="row g-3" method="POST", action="{% url 'customer-add' %}">
                    {% csrf_token %}
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">Account Number</label>
-    <input type="number" class="form-control border border-success border border-4" name="account_number">
+    <input type="number" class="form-control border border-success border border-3" name="account_number">
   </div>
   <div class="col-md-6">
     <label for="inputPassword4" class="form-label">Account Name</label>
-    <input type="text" class="form-control border border-success" name="account_name">
+    <input type="text" class="form-control border border-success border-3" name="account_name">
   </div>
   <div class="col-12">
     <label for="inputAddress" class="form-label">Account Holder Name</label>
-    <input type="text" class="form-control" name="account_holder_name">
+    <input type="text" class="form-control border-success border-3" name="account_holder_name">
   </div>
   <div class="col-12">
     <label for="inputAddress2" class="form-label">Customer Date of Birth</label>
-    <input type="date" class="form-control" name="customer_birth_date">
+    <input type="date" class="form-control border-success border-3" name="customer_birth_date">
   </div>
   <div class="col-md-6">
     <label for="inputCity" class="form-label">Customer NIDA</label>
-    <input type="number" class="form-control" name="customer_nida">
+    <input type="number" class="form-control border-success border-3" name="customer_nida">
   </div>
   <div class="col-md-4">
     <label for="inputState" class="form-label">Choose the Role or Privileges</label>
-          <select name="customer_role" class="form-select">
+          <select name="customer_role" class="form-select border-success border-3">
             <option selected>Choose...</option>
               <option value="Normal">Normal</option>
               <option value="High">High</option>
@@ -46,5 +49,6 @@
 </form>
         </div>
     </div>
+{% endblock %}
 </body>
 </html>

@@ -41,6 +41,7 @@ def transaction(request):
 class EditTemplate(TemplateView):
     template_name = 'cms/edit.html'
 
+
 class CustomerAdd(CreateView):
     model = Customer
     template_name = 'cms/add_customer.html'
@@ -59,4 +60,3 @@ class CustomerFormDjango(FormView):
     template_name = 'cms/djangoform.html'
     form_class = CustomerCreateForm
     success_url = '/customer'
-
