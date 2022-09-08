@@ -10,12 +10,14 @@ Class-based views
     1. Add an import:  from other_app.views import Home
     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
 Including another URLconf
-    1. Import the include() function: from django.urls import include, path
+    1. Import to include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
 from django.urls import path, include
-from CMS.views import customer, loan, transaction, CustomerAdd, CustomerDetails, EditTemplate, CustomerFormDjango, CMISHomeView
+
+from CMS.views import customer, loan, transaction, CustomerAdd, CustomerDetails, CustomerFormDjango, \
+    CMISHomeView
 
 urlpatterns = [
     path('', CMISHomeView.as_view(), name='home'),
@@ -26,6 +28,9 @@ urlpatterns = [
     path('add/', CustomerAdd.as_view(), name='customer-add'),
     path('customer/profile<int:pk>', CustomerDetails.as_view(), name='customer-profile'),
     path('edit/', CustomerFormDjango.as_view(), name='edit'),
+    # path('profile/', CustomerListView.as_view(), name='profile'),
     path('api-auth/', include('rest_framework.urls')),
     path('api/v1/', include('api.urls'))
+
+
 ]

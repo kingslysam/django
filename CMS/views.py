@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from itertools import chain
 from .form import CustomerCreateForm
 from .models import Customer, Loan, Transaction
 from django.views.generic import CreateView, DetailView, ListView, TemplateView, FormView
@@ -14,18 +14,6 @@ class CMISHomeView(TemplateView):
 def customer(request):
     cus = Customer.objects.all().order_by('account_number')
     return render(request, 'cms/customer.html', {'cus': cus})
-
-
-class CustomerListView(ListView):
-    queryset = Transaction.objects.all()
-    model = Transaction
-    template_name = 'cms/profile.html'
-    context_object_name = 'transactions'
-    success_url = '/profile'
-
-    def get_queryset(self):
-        query = Transaction.objects.filter(account_number='COOPERATE')
-        return query
 
 
 def loan(request):
@@ -60,3 +48,4 @@ class CustomerFormDjango(FormView):
     template_name = 'cms/djangoform.html'
     form_class = CustomerCreateForm
     success_url = '/customer'
+
