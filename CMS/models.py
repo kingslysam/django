@@ -1,3 +1,5 @@
+import datetime
+
 from django.core import validators
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
@@ -29,6 +31,7 @@ class Transaction(models.Model):
     transaction_amount = models.FloatField()
     transaction_type = models.CharField(choices=TRANSACTION_TYPE, max_length=20)
     transaction_party = models.CharField(max_length=255, default="No Known")
+    transaction_date = models.DateTimeField(default=datetime.datetime.now)
 
     def __str__(self):
         return self.account_number.account_holder_name
@@ -45,41 +48,23 @@ class Account(models.Model):
         return self.account_name
 
 
-class Loan(models.Model):
-    account_number = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    loan_amount = models.FloatField()
-    loan_type = models.CharField(max_length=20)
-    loan_start_date= models.DateField()
-    loan_duration = models.IntegerField()
-    loan_interest_rate = models.IntegerField()
-    loan_amount_paid = models.FloatField()
-
-    def __int__(self):
-        return self.account_number.account_name
-
-
-class NextOfKin(models.Model):
-    account_number = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    next_of_kin_name = models.CharField(max_length=255, unique=True)
-    next_of_kin_contact = models.CharField(max_length=15)
-    next_of_kin_residence = models.CharField(max_length=25)
-    next_of_kin_nida = models.IntegerField(unique=True)
-
-    def __str__(self):
-        return self.account_number.account_name
-
-
-class Staff(models.Model):
-    staff_id = models.IntegerField(unique=True)
-    staff_name = models.CharField(max_length=255)
-    staff_position = models.CharField(max_length=255)
-
-
-class StaffCustomer(models.Model):
-    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
-    account_number = models.ForeignKey(Customer, on_delete=models.CASCADE)
-
-
 class CustomerAccount(models.Model):
     account_id = models.ForeignKey(Account, on_delete=models.CASCADE)
     account_number = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
+
+class Service(models.Model):
+    service_id = models.IntegerField(unique=True, primary_key=True)
+    service_name = models.CharField(max_length=255)
+    service_desc = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.service_name
+
+
+class CustomerService(models.Model):
+    service_id = models.ForeignKey(Service, on_delete=models.CASCADE, related_name="services")
+    account_number = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="customers")
+
+    def __str__(self):
+        return self.service_id.service_name + " --- " + self.account_number.account_holder_name

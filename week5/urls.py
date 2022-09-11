@@ -16,21 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from CMS.views import customer, loan, transaction, CustomerAdd, CustomerDetails, CustomerFormDjango, \
-    CMISHomeView
+from CMS.views import customer, transaction, CustomerAdd, CustomerDetails, CustomerFormDjango, \
+    CMISHomeView, CustomerMobile
 
 urlpatterns = [
     path('', CMISHomeView.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('customer/', customer, name='customer'),
-    path('loan/', loan),
     path('transaction/', transaction),
     path('add/', CustomerAdd.as_view(), name='customer-add'),
     path('customer/profile<int:pk>', CustomerDetails.as_view(), name='customer-profile'),
     path('edit/', CustomerFormDjango.as_view(), name='edit'),
     # path('profile/', CustomerListView.as_view(), name='profile'),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/v1/', include('api.urls'))
-
-
+    path('api/v1/', include('api.urls')),
+    path('login/', include('django.contrib.auth.urls')),
+    path('customer/mobile<int:pk>', CustomerMobile.as_view(), name='mobile')
 ]

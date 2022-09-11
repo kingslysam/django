@@ -11,107 +11,125 @@
     <br>
     <br>
     <div class="container">
-    <div class="main-body text-success">
-        <h1>{{ customer.transactions.all.count }}</h1>
+        <div class="main-body text-success">
+            <h1>{{ customer.transactions.all.count }}</h1>
 
 
-          <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-                    <div class="mt-3">
-                      <h4>{{ customer.account_holder_name }}</h4>
-                      <p class="text-secondary mb-1">{{ customer.customer_occupation }}</p>
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
+                                     class="rounded-circle" width="150">
+                                <div class="mt-3">
+                                    <h4>{{ customer.account_holder_name }}</h4>
+                                    <p class="text-secondary mb-1">{{ customer.customer_occupation }}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+
                 </div>
-              </div>
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Full Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ customer.account_holder_name }}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Account Number</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ customer.account_number }}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Customer NIDA</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ customer.customer_nida }}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Owning Account Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ customer.account_name }}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Customer Role</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ customer.customer_role }}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a href="##########" class="btn btn-outline-success " target="_blank">Edit</a>
+                                    <a href="##########" class="btn btn-outline-success" target="_blank">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            </div>
-            <div class="col-md-8">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Full Name</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      {{ customer.account_holder_name }}
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Account Number</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        {{ customer.account_number }}
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Customer NIDA</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      {{ customer.customer_nida }}
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Owning Account Name</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        {{ customer.account_name}}
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Customer Role</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        {{ customer.customer_role}}
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <a href="##########" class="btn btn-outline-success " target="_blank">Edit</a>
-                      <a href="##########" class="btn btn-outline-success" target="_blank">Delete</a>
-                    </div>
-                  </div>
+
                 </div>
-              </div>
-
-
-
             </div>
-          </div>
 
             <table border="5" class="table table-hover border border border-success text-success">
-             <thead>
-            <tr>
-                <th scope="col">Transaction Number</th>
-                <th scope="col">Transaction Amount</th>
-                <th scope="col">Transaction Type</th>
-                <th scope="col">To / From</th>
-            </tr>
-            </thead>
-            <tbody>
-                {% for custransact in customer.transactions.all %}
+                <thead>
                 <tr>
-                    <td>{{ custransact.transaction_number }}</td>
-                    <td>{{ custransact.transaction_amount }}</td>
-                    <td>{{ custransact.transaction_type }}</td>
-                    <td>{{ custransact.transaction_party }}</td>
+                    <th scope="col">Transaction Number</th>
+                    <th scope="col">Transaction Amount</th>
+                    <th scope="col">Transaction Type</th>
+                    <th scope="col">To / From</th>
                 </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                </thead>
+                <tbody>
+                {% for custransact in customer.transactions.all %}
+                    <tr>
+                        <td>{{ custransact.transaction_number }}</td>
+                        <td>{{ custransact.transaction_amount }}</td>
+                        <td>{{ custransact.transaction_type }}</td>
+                        <td>{{ custransact.transaction_party }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <br>
+            <br>
+
+            <table border="5" class="table table-hover border border border-success text-success">
+                <thead>
+                <tr>
+                    <th scope="col">Preferred services</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for custransact in customer.customers.all %}
+                    <tr>
+                        <td>{{ custransact.service_id }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
         </div>
     </div>
